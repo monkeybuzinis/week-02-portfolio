@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import Link from "next/link";
+import MobileMenu from "./ui/MobileMenu";
 import "./globals.css";
 
 const geist = Geist({
@@ -9,8 +10,8 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "My personal portfolio",
+  title: "Khanh Le — Portfolio",
+  description: "CS student and AI engineering graduate student at CSTU.",
 };
 
 export default function RootLayout({
@@ -20,32 +21,41 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geist.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-gray-900 font-sans">
-        <header className="border-b border-gray-200">
+      <body className="min-h-full flex flex-col bg-slate-950 text-slate-100 font-sans">
+        <header className="border-b border-slate-800 relative">
           <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-            <span className="font-semibold text-sm tracking-tight">
-              My Portfolio
+            <span className="font-semibold text-sm tracking-tight text-white">
+              Khanh Le
             </span>
-            <nav className="flex items-center gap-6">
+
+            <nav className="hidden sm:flex items-center gap-6">
               <Link
                 href="/"
-                className="text-sm text-gray-600 hover:text-black transition-colors"
+                className="text-sm text-slate-400 hover:text-white transition-colors"
               >
                 Home
               </Link>
               <Link
                 href="/about"
-                className="text-sm text-gray-600 hover:text-black transition-colors"
+                className="text-sm text-slate-400 hover:text-white transition-colors"
               >
                 About
               </Link>
               <Link
                 href="/projects"
-                className="text-sm text-gray-600 hover:text-black transition-colors"
+                className="text-sm text-slate-400 hover:text-white transition-colors"
               >
                 Projects
               </Link>
+              <Link
+                href="/interests"
+                className="text-sm text-slate-400 hover:text-white transition-colors"
+              >
+                Interests
+              </Link>
             </nav>
+
+            <MobileMenu />
           </div>
         </header>
 
@@ -53,9 +63,9 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className="border-t border-gray-200">
-          <div className="max-w-4xl mx-auto px-6 py-6 text-center text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} My Portfolio. All rights reserved.
+        <footer className="border-t border-slate-800">
+          <div className="max-w-4xl mx-auto px-6 py-6 text-center text-sm text-slate-500">
+            &copy; {new Date().getFullYear()} Khanh Le. All rights reserved.
           </div>
         </footer>
       </body>

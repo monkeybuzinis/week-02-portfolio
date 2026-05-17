@@ -1,3 +1,6 @@
+import Link from "next/link";
+import CopyEmailButton from "../ui/CopyEmailButton";
+
 const skills = [
   "Python",
   "JavaScript",
@@ -15,10 +18,9 @@ const skills = [
 const learningNow = ["LLM Agents", "Tool Use", "RAG", "SQLAlchemy"];
 
 const interests = [
-  "Painting",
-  "Outdoor Sports",
-  "Nature",
-  
+  { label: "Painting", slug: "painting" },
+  { label: "Outdoor Sports", slug: "outdoor-sports" },
+  { label: "Nature", slug: "nature" },
 ];
 
 export default function AboutPage() {
@@ -52,16 +54,11 @@ export default function AboutPage() {
           how to build intelligent applications end-to-end: from React frontends to
           FastAPI backends to LLM-powered features using the Anthropic Claude API.
         </p>
-        <p>
-          What excites me most is the intersection of domain expertise and AI —
-          using my background in high-stakes operational environments to build
-          tools that are not just technically sound, but genuinely reliable and
-          useful under pressure.
-        </p>
+        
         <p>
           I&apos;m open to internships, entry-level roles, and research collaborations
           in AI engineering and fullstack development. GitHub, LinkedIn, and email
-          are linked below — don&apos;t hesitate to reach out.
+          are linked below.
         </p>
       </section>
 
@@ -69,12 +66,7 @@ export default function AboutPage() {
       <section className="bg-slate-800 border border-slate-700 rounded-xl p-6 flex flex-col gap-3">
         <h2 className="text-xl font-semibold text-white">Contact &amp; Profiles</h2>
         <div className="flex flex-wrap gap-3">
-          <a
-            href="mailto:your-email@example.com"
-            className="px-4 py-2 bg-teal-500 hover:bg-teal-400 text-slate-900 font-medium rounded-lg text-sm transition-colors"
-          >
-            Email Me
-          </a>
+          <CopyEmailButton />
           <a
             href="https://github.com/monkeybuzinis"
             aria-label="GitHub profile"
@@ -127,11 +119,13 @@ export default function AboutPage() {
         <h2 className="text-2xl font-semibold text-white mb-4">Outside of Code</h2>
         <ul className="flex flex-wrap gap-2">
           {interests.map((interest) => (
-            <li
-              key={interest}
-              className="px-3 py-1 bg-slate-800 text-slate-400 border border-slate-700 rounded-full text-sm font-medium"
-            >
-              {interest}
+            <li key={interest.slug}>
+              <Link
+                href={`/interests?tab=${interest.slug}`}
+                className="block px-3 py-1 bg-slate-800 text-slate-400 border border-slate-700 rounded-full text-sm font-medium hover:border-teal-500 hover:text-teal-400 transition-colors"
+              >
+                {interest.label}
+              </Link>
             </li>
           ))}
         </ul>
